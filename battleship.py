@@ -5,23 +5,23 @@
 
 from random import randint      #imports randint function to help to generate battleships
 
-user = input("Welome to Battleship, Pirate! What do we call ye?")       #gets user name
-print ("Alright", user, "matey... let's see what yer got!")          #starts game
+user = input("Welome to Battleship, Pirate! What do we call ye? ")       #gets user name
+print ("\nAlright", user, "matey... let's see what yer got! ")          #starts game
 
-board_col = input("How big's the ocean, how many columns be she? (minimum 4)")      #gets board size, columns
+board_col = input("\nHow big's the ocean, how many columns be she? (minimum 4) ")      #gets board size, columns
 board_col = int(board_col)                  #converts to int for calculations
-board_row = input("And how many rows be she? (minimum 4)")          #gets board size, rows
+board_row = input("\nAnd how many rows be she? (minimum 4) ")          #gets board size, rows
 board_row = int(board_row)                  #converts to int for calculations
 
 board_size = board_row * board_col          #calculates board size
 if board_size <= 20:                        #comments on chosen difficulty level
-    print ("Ha ha ha! Not so tough ey matey!") 
+    print ("\nHa ha ha! Not so tough ey matey!") 
 if 21 <= board_size <= 36:
-    print ("Think ye tough ey matey!")
+    print ("\nThink ye tough ey matey!")
 if 37 <= board_size <= 49:
-    print ("You know somethin' I don't, hotshot?")
+    print ("\nYou know somethin' I don't, hotshot?")
 if board_size >= 50:
-    print ("Crikey! He's a madman!")
+    print ("\nCrikey! He's a madman!")
 
 board = []                      #creates board            
 for x in range(1, board_row + 1):                
@@ -31,7 +31,7 @@ def print_board(board):         #defines function to display board
     for line in board:
         print (" ".join(line))
 
-print ("Alrighty, that be the ocean, where be me ships then matey?")
+print ("\nAlrighty, that be the ocean, where be me ships then matey?")
 print_board(board)              #dispays board
 
 class battleships(object):                          #NEED CLASS???
@@ -70,52 +70,52 @@ guess = 1                               #assigns value of 1 to guess variable. p
 def check_guess():                      #defines fuction to check guess location against ship locations
     if guess_ship_square == ship_square1:                       #checks for a correct guess
         if board[(guess_row -1)][(guess_col-1)] == "*":         #checks that player has not already found this ship
-            print ("What's the matter, matey, ye lost yer mind? Ye just shot thur.")
+            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
         else:
-            print ("Argh there she goes,", ship1.ship_name,"! A fine ship she war... Not bad,", user,"!")
+            print ("\nArgh there she goes,", ship1.ship_name,"! A fine ship she war... Not bad,", user,"!")
             board[(guess_row - 1)][(guess_col - 1)] = "*"       #updates board to display hit battleship
     elif guess_ship_square == ship_square2:
         if board[(guess_row -1)][(guess_col-1)] == "*":                           
-            print ("What's the matter, matey, ye lost yer mind? Ye just shot thur.")
+            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
         else:
-            print ("Argh there she goes,", ship2.ship_name,"! A fine ship she war... Not bad,", user,"!")
+            print ("\nArgh there she goes,", ship2.ship_name,"! A fine ship she war... Not bad,", user,"!")
             board[(guess_row - 1)][(guess_col - 1)] = "*"
     elif guess_ship_square == ship_square3:
         if board[(guess_row -1)][(guess_col-1)] == "*":                           
-            print ("What's the matter, matey, ye lost yer mind? Ye just shot thur.")
+            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
         else:
-            print ("Argh there she goes,", ship3.ship_name,"! A fine ship she war... Not bad,", user,"!")
+            print ("\nArgh there she goes,", ship3.ship_name,"! A fine ship she war... Not bad,", user,"!")
             board[(guess_row - 1)][(guess_col - 1)] = "*"
     elif guess_ship_square == ship_square4:
         if board[(guess_row -1)][(guess_col-1)] == "*":                           
-            print ("What's the matter, matey, ye lost yer mind? Ye just shot thur.")
+            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
         else:
-            print ("Argh there she goes,", ship4.ship_name,"! A fine ship she war... Not bad,", user,"!")
+            print ("\nArgh there she goes,", ship4.ship_name,"! A fine ship she war... Not bad,", user,"!")
             board[(guess_row - 1)][(guess_col - 1)] = "*"
 
     elif guess_row < 1 or guess_row > board_row or guess_col < 1 or guess_col > board_col:      #checks that player guesses within board limits       
-        print ("Try firing at the water!")                                                      
+        print ("\nTry firing at the water!")                                                      
     elif board[(guess_row -1)][(guess_col-1)] == "X":                                           #checks that player has not already guessed here                  
-        print ("What's the matter, matey, ye lost yer mind? Ye just shot thur.")
+        print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
     else:
-        print ("Bad shot, matey!")                                                      #dispays miss message if player fails to hit battleship
+        print ("\nBad shot, matey!")                                                      #dispays miss message if player fails to hit battleship
         board[(guess_row - 1)][(guess_col - 1)] = "X"                                   #updates board to display guessed square
     global guess                                                            #declares guess variable as global to override local behaviour
     guess += 1                                                              #updates number of guesses
 
     if guess > 10:                                                         #dispays game over message if player has had ten guesses
-        print ("GAME OVER!")
+        print ("\nGAME OVER!")
 
     if guess <= 10:
-        print ("Shots left: ",(10 - guess))                                     #displays number of remaining guesses                                       
+        print ("\nShots left: ",(10 - guess))                                     #displays number of remaining guesses                                       
         print_board(board)                                                      #dispays updated board
 
 while guess <= 10:                                                          #continues game up to ten guesses
                                                                             #NEED TO ADD CONDITION IF PLAYER WINS!!!!
     
-    guess_row = input("Which row? ")                            #gets player's row guess
+    guess_row = input("\nWhich row? ")                            #gets player's row guess
     guess_row = int(guess_row)                                  #converts guess to int for comparisons
-    guess_col = input("Ha! Which column? ")                     #gets player's column guess
+    guess_col = input("\nHa! Which column? ")                     #gets player's column guess
     guess_col = int(guess_col)                                  #converts guess to int for comparisons
     guess_ship_square = (guess_row, guess_col)                  #stores guesses in one value
                                                                 #NEED TO ADD CHECK IF DIGIT CONDITION TO STOP ERRORS!!!
