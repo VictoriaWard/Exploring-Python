@@ -65,62 +65,74 @@ ship_square4 = check_location(ship4, ship1, ship2, ship3)
 
 
 guess = 1                               #assigns value of 1 to guess variable. player is allowed 10 guesses
+hit1 = False                            #creates variables to record if ships have been hit
+hit2 = False
+hit3 = False
+hit4 = False
 
 
 def check_guess():                      #defines fuction to check guess location against ship locations
-    if guess_ship_square == ship_square1:                       #checks for a correct guess
-        if board[(guess_row -1)][(guess_col-1)] == "*":         #checks that player has not already found this ship
-            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
-        else:
-            print ("\nArgh there she goes,", ship1.ship_name,"! A fine ship she war... Not bad,", user,"!")
-            board[(guess_row - 1)][(guess_col - 1)] = "*"       #updates board to display hit battleship
-    elif guess_ship_square == ship_square2:
-        if board[(guess_row -1)][(guess_col-1)] == "*":                           
-            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
-        else:
-            print ("\nArgh there she goes,", ship2.ship_name,"! A fine ship she war... Not bad,", user,"!")
-            board[(guess_row - 1)][(guess_col - 1)] = "*"
-    elif guess_ship_square == ship_square3:
-        if board[(guess_row -1)][(guess_col-1)] == "*":                           
-            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
-        else:
-            print ("\nArgh there she goes,", ship3.ship_name,"! A fine ship she war... Not bad,", user,"!")
-            board[(guess_row - 1)][(guess_col - 1)] = "*"
-    elif guess_ship_square == ship_square4:
-        if board[(guess_row -1)][(guess_col-1)] == "*":                           
-            print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
-        else:
-            print ("\nArgh there she goes,", ship4.ship_name,"! A fine ship she war... Not bad,", user,"!")
-            board[(guess_row - 1)][(guess_col - 1)] = "*"
-
-    elif guess_row < 1 or guess_row > board_row or guess_col < 1 or guess_col > board_col:      #checks that player guesses within board limits       
-        print ("\nTry firing at the water!")                                                      
-    elif board[(guess_row -1)][(guess_col-1)] == "X":                                           #checks that player has not already guessed here                  
+    if guess_row < 1 or guess_row > board_row or guess_col < 1 or guess_col > board_col:      #checks that player guesses within board limits       
+        print ("\nTry firing at the water!")
+    elif board[(guess_row -1)][(guess_col-1)] == "X" or board[(guess_row -1)][(guess_col-1)] == "*":         #checks that player has not already guessed here                  
         print ("\nWhat's the matter, matey, ye lost yer mind? Ye just shot thur.")
-    else:
-        print ("\nBad shot, matey!")                                                      #dispays miss message if player fails to hit battleship
-        board[(guess_row - 1)][(guess_col - 1)] = "X"                                   #updates board to display guessed square
-    global guess                                                            #declares guess variable as global to override local behaviour
-    guess += 1                                                              #updates number of guesses
+        
+    elif guess_ship_square == ship_square1:                       #checks for a correct guess
+        print ("\nArgh there she goes,", ship1.ship_name,"! A fine ship she war... Not bad,", user,"!")
+        board[(guess_row - 1)][(guess_col - 1)] = "*"       #updates board to display hit battleship
+        global hit1                                          #declares hit variables as global variables
+        hit1 = True
+                                                
+    elif guess_ship_square == ship_square2:
+        print ("\nArgh there she goes,", ship2.ship_name,"! A fine ship she war... Not bad,", user,"!")
+        board[(guess_row - 1)][(guess_col - 1)] = "*"
+        global hit2
+        hit2 = True
+        
+    elif guess_ship_square == ship_square3:
+        print ("\nArgh there she goes,", ship3.ship_name,"! A fine ship she war... Not bad,", user,"!")
+        board[(guess_row - 1)][(guess_col - 1)] = "*"
+        global hit3
+        hit3 = True
+        
+    elif guess_ship_square == ship_square4:
+        print ("\nArgh there she goes,", ship4.ship_name,"! A fine ship she war... Not bad,", user,"!")
+        board[(guess_row - 1)][(guess_col - 1)] = "*"
+        global hit4
+        hit4 = True
+        
+            
 
-    if guess > 10:                                                         #dispays game over message if player has had ten guesses
+    else:
+        print ("\nBad shot, matey!")                        #dispays miss message if player fails to hit battleship
+        board[(guess_row - 1)][(guess_col - 1)] = "X"       #updates board to display guessed square
+        
+    global guess                                            #declares guess variable as global to override local behaviour
+    guess += 1                                              #updates number of guesses
+
+    if guess > 10:                                          #dispays game over message if player has had ten guesses
         print ("\nGAME OVER!")
 
     if guess <= 10:
-        print ("\nShots left: ",(10 - guess))                                     #displays number of remaining guesses                                       
-        print_board(board)                                                      #dispays updated board
+        print ("\nShots left: ",(10 - guess))               #displays number of remaining guesses                                       
+        print_board(board)                                  #dispays updated board
 
-while guess <= 10:                                                          #continues game up to ten guesses
-                                                                            #NEED TO ADD CONDITION IF PLAYER WINS!!!!
+while guess <= 10:                                          #continues game up to ten guesses
     
-    guess_row = input("\nWhich row? ")                            #gets player's row guess
-    guess_row = int(guess_row)                                  #converts guess to int for comparisons
-    guess_col = input("\nHa! Which column? ")                     #gets player's column guess
-    guess_col = int(guess_col)                                  #converts guess to int for comparisons
-    guess_ship_square = (guess_row, guess_col)                  #stores guesses in one value
-                                                                #NEED TO ADD CHECK IF DIGIT CONDITION TO STOP ERRORS!!!
-    check_guess()                                               #runs check guess function to check guess location against ship locations and update board
+    guess_row = input("\nWhich row? ")                      #gets player's row guess
+    if str.isdigit(guess_row) == False:                         #checks that player has enter a number 
+        guess_row = input("\Argh, what e sayin'? Which row I say?")
+    guess_row = int(guess_row)                              #converts guess to int for comparisons
+    guess_col = input("\nHa! Which column? ")               #gets player's column guess
+    if str.isdigit(guess_col) == False:
+        guess_col = input("\Argh, what e sayin'? Which column I say?")
+    guess_col = int(guess_col)                              #converts guess to int for comparisons
+    guess_ship_square = (guess_row, guess_col)              #stores guesses in one value
+                                                            
+    check_guess()                                           #runs check guess function to check guess location against ship locations and update board
 
-           
+    if hit1 == hit2 == hit3 == hit4 == True:                #checks if player has won and ends game
+        print ("\nSHIVER ME TIMBERS! YE DONE IT!")
+        break
 
 
