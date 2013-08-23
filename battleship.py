@@ -59,7 +59,7 @@ ship_square1 = ship_square(ship1)                      #runs functions to genera
 ship_square(ship2)                                     #saves ship square locations as values for comparisons
 ship_square2 = check_location(ship2, ship1, ship1, ship1 ) 
 ship_square(ship3)
-ship_square3 = check_location(ship3, ship1, ship2, ship1)
+ship_square3 = check_location(ship3, ship1, ship2, ship1)               #ERROR NOT ALL SHIPS BEING POSITIONED!!!! 
 ship_square(ship4)
 ship_square4 = check_location(ship4, ship1, ship2, ship3)
 
