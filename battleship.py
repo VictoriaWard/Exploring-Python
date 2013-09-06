@@ -401,71 +401,77 @@ ship3 = battleships("Jolly Roger", 2, None, None, None, None, None, None)
 ship4 = battleships("The Walrus", 3, None, None, None, None, None, None)
 
 
-#create loop/function so that player has option to continue play after each game!!!
-
-
 user = input("Welome to Battleship, Pirate! What do we call ye? ")      #gets user name
+user = str.capitalize(user)
 
-print ("\nAlright", user, "matey... let's see what yer got! ")          #starts game
+while True:
 
-num_rows = get_rows()                               #gets number of clumns and number of rows from player
-num_cols = get_cols()
-board = []                                          #creates an empty list to store board
-board = board_generator(num_rows, num_cols)         #creates the board
+    print ("\nAlright", user, "matey... let's see what yer got! ")          #starts game
 
-ship_squares = []           #creates an empty dictionary to store ship coordinates as key value pairs
-hit_squares = []            #creates an empty dictionary to store successful coordinate guesses as key value pairs
+    num_rows = get_rows()                               #gets number of clumns and number of rows from player
+    num_cols = get_cols()
+    board = []                                          #creates an empty list to store board
+    board = board_generator(num_rows, num_cols)         #creates the board
 
-ship1.row = ship1.row_generator()                   #positions ship1
-ship1.col = ship1.col_generator()
-ship1.ship_square_checker(ship1.row, ship1.col, ship_squares)          #adds ship1 coordinates to dictionary
+    ship_squares = []           #creates an empty dictionary to store ship coordinates as key value pairs
+    hit_squares = []            #creates an empty dictionary to store successful coordinate guesses as key value pairs
 
-while len(ship_squares) == 1:
-    ship2.row = ship2.row_generator()                   
-    ship2.col = ship2.col_generator()
-    ship2.ship_square_checker(ship2.row, ship2.col, ship_squares)
+    ship1.row = ship1.row_generator()                   #positions ship1
+    ship1.col = ship1.col_generator()
+    ship1.ship_square_checker(ship1.row, ship1.col, ship_squares)          #adds ship1 coordinates to dictionary
 
-while len(ship_squares) == 2:
-    ship3.row = ship3.row_generator()                   
-    ship3.col = ship3.col_generator()
-    ship3.ship_square_checker(ship3.row, ship3.col, ship_squares)
+    while len(ship_squares) == 1:
+        ship2.row = ship2.row_generator()                   
+        ship2.col = ship2.col_generator()
+        ship2.ship_square_checker(ship2.row, ship2.col, ship_squares)
+
+    while len(ship_squares) == 2:
+        ship3.row = ship3.row_generator()                   
+        ship3.col = ship3.col_generator()
+        ship3.ship_square_checker(ship3.row, ship3.col, ship_squares)
     
-while len(ship_squares) == 3:
-    ship3.row2 = ship3.row_generator()                   
-    ship3.col2 = ship3.col_generator()
-    if ship3.square2_checker(ship3.row, ship3.col, ship3.row2, ship3.col2):  #checks ship3 second square connected to first square
-        ship3.ship_square_checker(ship3.row2, ship3.col2, ship_squares)
+    while len(ship_squares) == 3:
+        ship3.row2 = ship3.row_generator()                   
+        ship3.col2 = ship3.col_generator()
+        if ship3.square2_checker(ship3.row, ship3.col, ship3.row2, ship3.col2):  #checks ship3 second square connected to first square
+            ship3.ship_square_checker(ship3.row2, ship3.col2, ship_squares)
         
-while len(ship_squares) == 4:
-    ship4.row = ship4.row_generator()                   
-    ship4.col = ship4.col_generator()
-    ship4.ship_square_checker(ship4.row, ship4.col, ship_squares)
-    
-while len(ship_squares) == 5:
-    ship4.row2 = ship4.row_generator()                   
-    ship4.col2 = ship4.col_generator()
-    if ship4.square2_checker(ship4.row, ship4.col, ship4.row2, ship4.col2):  #checks ship4 second square connected to first square
-        ship4.ship_square_checker(ship4.row2, ship4.col2, ship_squares)
+    while len(ship_squares) == 4:
+        ship4.row = ship4.row_generator()                   
+        ship4.col = ship4.col_generator()
+        ship4.ship_square_checker(ship4.row, ship4.col, ship_squares)
+        
+    while len(ship_squares) == 5:
+        ship4.row2 = ship4.row_generator()                   
+        ship4.col2 = ship4.col_generator()
+        if ship4.square2_checker(ship4.row, ship4.col, ship4.row2, ship4.col2):  #checks ship4 second square connected to first square
+            ship4.ship_square_checker(ship4.row2, ship4.col2, ship_squares)
 
-while len(ship_squares) == 6:
-    ship4.row3 = ship4.row_generator()                   
-    ship4.col3 = ship4.col_generator()
-    if ship4.square3_checker(ship4.row, ship4.col, ship4.row2, ship4.col2, ship4.row3, ship4.col3):  #checks ship4 third square connected to first and second squares in a line
-        ship4.ship_square_checker(ship4.row3, ship4.col3, ship_squares)
+    while len(ship_squares) == 6:
+        ship4.row3 = ship4.row_generator()                   
+        ship4.col3 = ship4.col_generator()
+        if ship4.square3_checker(ship4.row, ship4.col, ship4.row2, ship4.col2, ship4.row3, ship4.col3):  #checks ship4 third square connected to first and second squares in a line
+            ship4.ship_square_checker(ship4.row3, ship4.col3, ship_squares)
 
 
-print ("\nAlrighty, that be the ocean, where be me ships then matey?")
+    print ("\nAlrighty, that be the ocean, where be me ships then matey?")
 
-for guess in range(10):
-    if not check_win(hit_squares, ship_squares):                               #continues game up to ten guesses
-        print_board(board)                              #dispays board
-        row_guess = get_row_guess()                     #assigns guessed rows and columns to global variables
-        col_guess = get_col_guess()
-        check_guess(row_guess, col_guess, hit_squares, ship_squares, board)
+    for guess in range(10):
+        if not check_win(hit_squares, ship_squares):                               #continues game up to ten guesses
+            print_board(board)                              #dispays board
+            row_guess = get_row_guess()                     #assigns guessed rows and columns to global variables
+            col_guess = get_col_guess()
+            check_guess(row_guess, col_guess, hit_squares, ship_squares, board)
 
-if not check_win(hit_squares, ship_squares):
-    print ("\nGAME OVER! You lose!")
-    print_board(board)
+    if not check_win(hit_squares, ship_squares):
+        print ("\nGAME OVER! You lose!")
+        print_board(board)
+
+    play = str.lower(input("Play again? "))
+    if play != "yes" and play != "y": break
+        
+
+
     
     
 
