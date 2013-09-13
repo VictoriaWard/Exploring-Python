@@ -8,7 +8,7 @@ Here you will find some programs I have created using Python 3.3:
   
 ### MIT Open Courseware 6.00 Introduction to Computer Science and Programming Problem Sets:
 
-*### PS1: Paying Off Credit Card Debt
+### PS1: Paying Off Credit Card Debt
 
 ## Problem 1 - Paying the Minimum: 
 
