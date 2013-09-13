@@ -28,3 +28,4 @@ currently includes the following features:
 * 4 ships
 * ships of different sizes (1, 2 and 3 square)
 * player allowed 10 guesses
+* play again option
