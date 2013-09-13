@@ -25,6 +25,7 @@ Finally, print the result, which should include the total amount paid that year 
 
 
 month = 1
+total_paid = 0
 balance = float(input("Enter outstanding balance: "))
 annual_interest = float(input("Enter annual interest rate as a percentage: "))/100
 minimum_monthly_rate = float(input("Enter minimum monthly payment rate as a percentage: "))/100
@@ -33,9 +34,12 @@ for m in range(12):
     monthly_interest = (annual_interest/12) * balance
     principal_paid = minimum_monthly_payment - monthly_interest
     balance = balance - principal_paid
-    print ("\nMonth", month, "\nMinimum monthly payment: £", (round(minimum_monthly_payment, 2)), "\nPrincipal paid: £",round(principal_paid, 2),
-           "\nRemaining balance: £",round(balance,2))
+    print ("\nMonth", month, "\nMinimum monthly payment: £" + str(round(minimum_monthly_payment, 2)), "\nPrincipal paid: £" + str(round(principal_paid, 2)),
+           "\nRemaining balance: £" + str(round(balance, 2)))
     month += 1
+
+    total_paid += minimum_monthly_payment
+print ("\nTotal amount paid: £" + str(round(total_paid, 2)) + "\nRemaining balance: £" + str(round(balance, 2)))
 
 
 
