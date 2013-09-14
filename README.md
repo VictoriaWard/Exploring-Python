@@ -34,6 +34,11 @@ to quickly calculate monthly payment to nearest penny.
 >A program that uses Newton's method of successive approximation to find the root of a 
 given polynomial function.
 
+##### Problem 4 - Hangman:
+
+>A one player version of the classic hangman game.
+
+ 
   
 ### battleship.py 
 
@@ -50,6 +55,7 @@ currently includes the following features:
 * ships of different sizes (1, 2 and 3 square)
 * player allowed 10 guesses
 * play again option
+
 
 
 ### abusive_height_converter.py
