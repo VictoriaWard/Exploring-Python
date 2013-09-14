@@ -27,6 +27,13 @@ outstanding balance and annual interest rate.
 >A version of problem 2 program that uses lower and upper bounds and a bisection search 
 to quickly calculate monthly payment to nearest penny.
 
+#### PS2: Successive Approximation
+
+##### Problems 1, 2, 3 - Polynomials, Derivatives and Newton's Method:
+
+>A program that uses Newton's method of successive approximation to find the root of a 
+given polynomial function.
+
   
 ### battleship.py 
 
